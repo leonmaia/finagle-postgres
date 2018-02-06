@@ -193,9 +193,9 @@ object ValueEncoder extends LowPriorityEncoder {
     "jsonb",
     j => String.valueOf(j),
     (j, c) => {
-      val cb = ChannelBuffers.buffer(1 + j.bytes.length)
+      val cb: ChannelBuffer = ChannelBuffers.buffer(1 + j.value.getBytes.length)
       cb.writeByte(1)
-      cb.writeBytes(j.bytes)
+      cb.writeBytes(j.value.getBytes)
       Some(cb)
     }
   )
